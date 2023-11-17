@@ -2,3 +2,22 @@
 name = "mysql-crypt"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+futures-lite = { version = "*", optional = true }
+pin-project-lite = { version = "*", optional = true }
+
+[dev-dependencies]
+async-std = { version = "*", features = [ "attributes" ] }
+lazy_static = "*"
+lru = "*"
+
+[features]
+async = ["futures-lite", "pin-project-lite"]
+
+[[example]]
+name = "async-decoder"
+required-features = ["async"]
+
+[target.'cfg(all(unix, not(target_os = "macos")))'.dev-dependencies]
+libsystemd = "*"

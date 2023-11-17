@@ -1,3 +1,6 @@
+#[cfg(feature = "async")]
+mod async_decode;
+
 pub fn decode(data: &[u8], key: &[u8]) -> Vec<u8> {
     SqlCrypt::from_key(key).decode(data.to_vec())
 }
